@@ -1,4 +1,5 @@
 import lexical as lx
+import codecs
 from random import shuffle
 
 
@@ -6,7 +7,7 @@ l=lx.lexical()
 result='tld,dot_num,avg_host,max_host,avg_path,max_path,class\n'
 result_arr=[]
 
-with open('../parse/good.csv','r') as f:
+with codecs.open('../parse/good.csv',encoding='utf-8') as f:
     string=f.read()
 arr=string.split('\n')
 del(arr[0])
@@ -19,7 +20,7 @@ for line in arr:
     dot_num, avg_host, max_host, avg_path, max_path=l.lexical(hostname,path)
     result_arr.append(tld+','+str(dot_num)+','+str(avg_host)+','+str(max_host)+','+str(avg_path)+','+str(max_path)+',good')
 
-with open('../parse/bad.csv','r') as f:
+with codecs.open('../parse/bad.csv',encoding='utf-8') as f:
     string=f.read()
 arr=string.split('\n')
 del(arr[0])
@@ -35,5 +36,5 @@ for line in arr:
 shuffle(result_arr)
 result+='\n'.join(result_arr)
 
-with open('lexical.csv','w') as f:
+with codecs.open('lexical.csv',mode='w',encoding='utf-8') as f:
     f.write(result)

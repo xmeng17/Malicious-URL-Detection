@@ -29,7 +29,7 @@ warnings.filterwarnings("ignore")
 def main():
     thread_num = 10
     queue = qu.Queue()
-    proxys = helper.import_proxy('proxy.txt')
+    proxys = helper.import_proxy('list.csv')
     console_logger, result_logger = helper.setLogger()
     urls = helper.import_url('bad_hostnames.csv',0,5000)
     result_logger.debug(u'url,num_ip,reg_time,country,registrar')
@@ -44,6 +44,7 @@ def main():
         queue.put((i,url))
     
     # Wait on the queue until all have been processed
+
     queue.join()
 
 if __name__ == "__main__":

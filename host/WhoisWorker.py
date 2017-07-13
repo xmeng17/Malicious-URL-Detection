@@ -29,13 +29,13 @@ class WhoisWorker(threading.Thread):
                                     timeout=(self.conn_timeout, self.read_timeout),
                                     proxies=self.proxy_arr[proxy_index])
             if response.status_code >= 400:
-                self.console_logger.error('      Get bad request %d' % i)
+                self.console_logger.error('   Get bad request %s' % i)
                 return False
             else:
                 texts = response.text  # load contents in blocking mode
                 self.console_logger.debug('Success loading %d, thread %d proxy index %d' % (i, self.thread_id, proxy_index))
                 num_ip, reg_time, country, registrar = self.parser.parse(texts)
-                self.result_logger.debug(u'%s:%d,%s,%s,%s'%(url, num_ip, reg_time, country, registrar))
+                self.result_logger.debug(u'%s:%d,%s,%s,%s'%(i, num_ip, reg_time, country, registrar))
                 return True
         except Exception as e:
             self.console_logger.error('      Error loading %d, thread %d, proxy index %d' % (i, self.thread_id, proxy_index))

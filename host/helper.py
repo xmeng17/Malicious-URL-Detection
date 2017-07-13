@@ -12,7 +12,8 @@ def import_url(path,lo,hi):
     # returns url and its number
     for i,line in enumerate(arr):
         url = 'https://who.is/whois/'+ line
-        url_arr.append((i,url))
+        num = str(i).zfill(5)
+        url_arr.append((num,url))
     return url_arr
 
 

@@ -1,2 +1,2 @@
 # Malicious URL Detection
-Project under doc. Xiang Pan
+Project under Dr. Xiang Pan
